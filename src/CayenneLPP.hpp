@@ -78,12 +78,12 @@ public:
         if (currentIndex + LPP_DIGITAL_INPUT_SIZE > operationalSize)
         {
             // Handle error
-            return 1;
+            return 0;
         }
         buffer[currentIndex++] = channel;
         buffer[currentIndex++] = LPP_DIGITAL_INPUT;
         buffer[currentIndex++] = value;
-        return 0; // Success
+        return currentIndex; // Success
     }
 
     uint8_t add_digital_output(uint8_t channel, uint8_t value)
