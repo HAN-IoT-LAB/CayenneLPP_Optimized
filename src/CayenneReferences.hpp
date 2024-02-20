@@ -21,7 +21,7 @@ namespace PAYLOAD_ENCODER
         GPS_LOC         = 136       /* GPS LOCATION METER */      
     };
 
-    enum class DATA_TYPES_SIZES : uint8_t {
+    enum class DATA_TYPES_SIZES : size_t {
         DIG_IN          = 1,        /* 1 bit resolution */
         DIG_OUT         = 1,        /* 1 bit resolution */
         ANL_IN          = 2,        /* 0.01 Signed */
@@ -39,23 +39,23 @@ namespace PAYLOAD_ENCODER
     };
 
     // Function to create a mapping between data types reference and respective size in bytes;
-    std::unordered_map<DATA_TYPES, DATA_TYPES_SIZES> createDataTypeMap() {
-        std::unordered_map<DATA_TYPES, DATA_TYPES_SIZES> dataTypeMap = {
-            {DATA_TYPES::DIG_IN,        DATA_TYPES_SIZES::DIG_IN},
-            {DATA_TYPES::DIG_OUT,       DATA_TYPES_SIZES::DIG_OUT},
-            {DATA_TYPES::ANL_IN,        DATA_TYPES_SIZES::ANL_IN},
-            {DATA_TYPES::ANL_OUT,       DATA_TYPES_SIZES::ANL_OUT},
-            {DATA_TYPES::ILLUM_SENS,    DATA_TYPES_SIZES::ILLUM_SENS},
-            {DATA_TYPES::PRSNC_SENS,    DATA_TYPES_SIZES::PRSNC_SENS},
-            {DATA_TYPES::TEMP_SENS,     DATA_TYPES_SIZES::TEMP_SENS},
-            {DATA_TYPES::HUM_SENS,      DATA_TYPES_SIZES::HUM_SENS},
-            {DATA_TYPES::ACCRM_SENS,    DATA_TYPES_SIZES::ACCRM_SENS},
-            {DATA_TYPES::BARO_SENS,     DATA_TYPES_SIZES::BARO_SENS},
-            {DATA_TYPES::GYRO_SENS,     DATA_TYPES_SIZES::GYRO_SENS},
-            {DATA_TYPES::GPS_LOC,       DATA_TYPES_SIZES::GPS_LOC}
-        };
-        return dataTypeMap;
-    }
+    constexpr size_t getDataTypeSize(DATA_TYPES dataType) {
+        switch (dataType) {
+            case DATA_TYPES::DIG_IN:        return static_cast<size_t>(DATA_TYPES_SIZES::DIG_IN);
+            case DATA_TYPES::DIG_OUT:       return static_cast<size_t>(DATA_TYPES_SIZES::DIG_OUT);
+            case DATA_TYPES::ANL_IN:        return static_cast<size_t>(DATA_TYPES_SIZES::ANL_IN);
+            case DATA_TYPES::ANL_OUT:       return static_cast<size_t>(DATA_TYPES_SIZES::ANL_OUT);
+            case DATA_TYPES::ILLUM_SENS:    return static_cast<size_t>(DATA_TYPES_SIZES::ILLUM_SENS);
+            case DATA_TYPES::PRSNC_SENS:    return static_cast<size_t>(DATA_TYPES_SIZES::PRSNC_SENS);
+            case DATA_TYPES::TEMP_SENS:     return static_cast<size_t>(DATA_TYPES_SIZES::TEMP_SENS);
+            case DATA_TYPES::HUM_SENS:      return static_cast<size_t>(DATA_TYPES_SIZES::HUM_SENS);
+            case DATA_TYPES::ACCRM_SENS:    return static_cast<size_t>(DATA_TYPES_SIZES::ACCRM_SENS);
+            case DATA_TYPES::BARO_SENS:     return static_cast<size_t>(DATA_TYPES_SIZES::BARO_SENS);
+            case DATA_TYPES::GYRO_SENS:     return static_cast<size_t>(DATA_TYPES_SIZES::GYRO_SENS);
+            case DATA_TYPES::GPS_LOC:       return static_cast<size_t>(DATA_TYPES_SIZES::GPS_LOC);
+            default: return 0; // Or handle unknown data type appropriately
+        }
+    }   
 } // End of PAYLOAD_ENCODER Namespace.
 
 #endif // End of CAYENNE_REFERENCES_HPP
