@@ -6,8 +6,8 @@
 
 int main() {    
     PAYLOAD_ENCODER::CayenneLPP<100> payload(15); // Max size is 128, but dynamically allocates only for 10 elements
-    payload.addDigitalInput(4,80);
-    payload.addDigitalOutput(5,15);
+    //payload.addDigitalInput(4,80);
+    //payload.addDigitalOutput(5,15);
 
     const uint8_t* copyBuf = payload.getBuffer();
     
