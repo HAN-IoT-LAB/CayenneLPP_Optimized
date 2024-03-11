@@ -6,79 +6,96 @@
 
 namespace PAYLOAD_ENCODER
 {
+    /**
+     * @brief Enum class defining data types for Cayenne LPP.
+     */
     enum class DATA_TYPES : uint8_t {
-        DIG_IN                  = 0,        /* DIGITAL INPUT */      
-        DIG_OUT                 = 1,        /* DITIAL OUTPUT */
-        ANL_IN                  = 2,        /* ANALOG INPUT */
-        ANL_OUT                 = 3,        /* ANALOG OUTPUT */
-        ILLUM_SENS              = 101,      /* ILLUMINATION SENSOR */
-        PRSNC_SENS              = 102,      /* PRESCENCE SENSOR */
-        TEMP_SENS               = 103,      /* TEMPERATURE SENSOR */
-        HUM_SENS                = 104,      /* HUMIDITY SENSOR */
-        ACCRM_SENS              = 113,      /* ACCELEROMETER */
-        BARO_SENS               = 115,      /* BAROMETER */
-        GYRO_SENS               = 134,      /* GYROMETER */
-        GPS_LOC                 = 136       /* GPS LOCATION METER */      
-    };
-
-    enum class DATA_TYPES_SIZES : size_t {
-        DIG_IN                  = 1,        /* 1 bit resolution */
-        DIG_OUT                 = 1,        /* 1 bit resolution */
-        ANL_IN                  = 2,        /* 0.01 Signed */
-        ANL_OUT                 = 2,        /* 0.01 Signed */
-        ILLUM_SENS              = 2,        /* 1 Lux Unsigned MSB */
-        PRSNC_SENS              = 1,        /* 1 bit resolution */
-        TEMP_SENS               = 2,        /* 0.1 °C Signed MSB */
-        HUM_SENS                = 1,        /* 0.5 % Unsigned */
-        ACCRM_SENS              = 6,        /* 0.001 G Signed MSB per axis */
-        BARO_SENS               = 2,        /* 0.1 hPa Unsigned MSB */
-        GYRO_SENS               = 6,        /* 0.01 °/s Signed MSB per axis */
-        GPS_LOC                 = 9         /* Latitude  : 0.0001° Signed MSB 
-                                     * Longitude : 0.0001° Signed MSB 
-                                     * Altitude  : 0.01 meter Signed MSB */   
-    };
-
-    enum class DATA_TYPES_MULTIPLIER : uint32_t {
-        DIG_IN                  = 1,        /* 1 bit resolution */
-        DIG_OUT                 = 1,        /* 1 bit resolution */
-        ANL_IN                  = 100,      /* 0.01 Signed */
-        ANL_OUT                 = 100,      /* 0.01 Signed */
-        ILLUM_SENS              = 1,        /* 1 Lux Unsigned MSB */
-        PRSNC_SENS              = 1,        /* 1 bit resolution */
-        TEMP_SENS               = 10,       /* 0.1 °C Signed MSB */
-        HUM_SENS                = 2,        /* 0.5 % Unsigned */
-        ACCRM_SENS              = 1000,     /* 0.001 G Signed MSB per axis */
-        BARO_SENS               = 10,       /* 0.1 hPa Unsigned MSB */
-        GYRO_SENS               = 100,      /* 0.01 °/s Signed MSB per axis */
-        GPS_LAT                 = 10000,    /* Latitude  : 0.0001° Signed MSB */ 
-        GPS_LON                 = 10000,    /* Longitude : 0.0001° Signed MSB */
-        GPS_ALT                 = 100       /* Altitude  : 0.01 meter Signed MSB */                            
-    };
-
-    enum class DATA_TYPES_IS_SIGNED : bool {
-        DIG_IN                  = 0,    /* 1 bit resolution */
-        DIG_OUT                 = 0,    /* 1 bit resolution */
-        ANL_IN                  = 1,    /* 0.01 Signed */
-        ANL_OUT                 = 1,    /* 0.01 Signed */
-        ILLUM_SENS              = 0,    /* 1 Lux Unsigned MSB */
-        PRSNC_SENS              = 0,    /* 1 bit resolution */
-        TEMP_SENS               = 1,    /* 0.1 °C Signed MSB */
-        HUM_SENS                = 0,    /* 0.5 % Unsigned */
-        ACCRM_SENS              = 1,    /* 0.001 G Signed MSB per axis */
-        BARO_SENS               = 0,    /* 0.1 hPa Unsigned MSB */
-        GYRO_SENS               = 1,    /* 0.01 °/s Signed MSB per axis */
-        GPS_LOC                 = 1     /* Latitude  : 0.0001° Signed MSB 
+        DIG_IN                  = 0,    /**< 1 bit resolution */
+        DIG_OUT                 = 1,    /**< 1 bit resolution */
+        ANL_IN                  = 2,    /**< 0.01 Signed */
+        ANL_OUT                 = 3,    /**< 0.01 Signed */
+        ILLUM_SENS              = 101,  /**< 1 Lux Unsigned MSB */
+        PRSNC_SENS              = 102,  /**< 1 bit resolution */
+        TEMP_SENS               = 103,  /**< 0.1 °C Signed MSB */
+        HUM_SENS                = 104,  /**< 0.5 % Unsigned */
+        ACCRM_SENS              = 113,  /**< 0.001 G Signed MSB per axis */
+        BARO_SENS               = 115,  /**< 0.1 hPa Unsigned MSB */
+        GYRO_SENS               = 134,  /**< 0.01 °/s Signed MSB per axis */
+        GPS_LOC                 = 136   /**< Latitude  : 0.0001° Signed MSB 
                                         * Longitude : 0.0001° Signed MSB 
                                         * Altitude  : 0.01 meter Signed MSB */   
     };
 
-    enum class ERROR_TYPES : int {
-        LPP_ERROR_OK            = 0,
-        LPP_ERROR_OVERFLOW      = 1,
-        LPP_ERROR_UNKOWN_TYPE   = 2
+    /**
+     * @brief Enum class defining sizes of data types for Cayenne LPP.
+     */
+    enum class DATA_TYPES_SIZES : size_t {
+        DIG_IN                  = 1,   
+        DIG_OUT                 = 1,  
+        ANL_IN                  = 2,   
+        ANL_OUT                 = 2, 
+        ILLUM_SENS              = 2, 
+        PRSNC_SENS              = 1,    
+        TEMP_SENS               = 2,    
+        HUM_SENS                = 1,    
+        ACCRM_SENS              = 6,    
+        BARO_SENS               = 2,    
+        GYRO_SENS               = 6,    
+        GPS_LOC                 = 9     
     };
 
-    // Function to create a mapping between data types reference and respective size in bytes;
+    /**
+     * @brief Enum class defining multipliers of data types for Cayenne LPP.
+     */
+    enum class DATA_TYPES_MULTIPLIER : uint32_t {
+        DIG_IN                  = 1,    
+        DIG_OUT                 = 1,    
+        ANL_IN                  = 100,  
+        ANL_OUT                 = 100,  
+        ILLUM_SENS              = 1,    
+        PRSNC_SENS              = 1,    
+        TEMP_SENS               = 10,   
+        HUM_SENS                = 2,  
+        ACCRM_SENS              = 1000, 
+        BARO_SENS               = 10,   
+        GYRO_SENS               = 100,  
+        GPS_LAT                 = 10000,
+        GPS_LON                 = 10000,
+        GPS_ALT                 = 100                       
+    };
+
+    /**
+     * @brief Enum class defining whether data types are signed or not for Cayenne LPP.
+     */
+    enum class DATA_TYPES_IS_SIGNED : bool {
+        DIG_IN                  = 0,    
+        DIG_OUT                 = 0,    
+        ANL_IN                  = 1,    
+        ANL_OUT                 = 1,    
+        ILLUM_SENS              = 0,    
+        PRSNC_SENS              = 0,    
+        TEMP_SENS               = 1,    
+        HUM_SENS                = 0,    
+        ACCRM_SENS              = 1,    
+        BARO_SENS               = 0,    
+        GYRO_SENS               = 1,    
+        GPS_LOC                 = 1       
+    };
+
+    /**
+     * @brief Enum class defining error types for Cayenne LPP.
+     */
+    enum class ERROR_TYPES : int {
+        LPP_ERROR_OK            = 0,    /**< No error */
+        LPP_ERROR_OVERFLOW      = 1,    /**< Buffer overflow */
+        LPP_ERROR_UNKOWN_TYPE   = 2     /**< Unknown data type */
+    };
+
+    /**
+     * @brief Function to get the size of a data type in bytes.
+     * @param dataType The data type.
+     * @return The size of the data type in bytes.
+     */
     constexpr size_t getDataTypeSize(DATA_TYPES dataType) {
         switch (dataType) {
             case DATA_TYPES::DIG_IN:        return static_cast<size_t>(DATA_TYPES_SIZES::DIG_IN);
@@ -97,7 +114,11 @@ namespace PAYLOAD_ENCODER
         }
     }   
 
-    // Function to create a mapping between data types reference and respective size in bytes;
+    /**
+     * @brief Function to get the multiplier of a data type.
+     * @param dataType The data type.
+     * @return The multiplier of the data type.
+     */
     constexpr uint32_t getDataTypeMultiplier(DATA_TYPES dataType) {
         switch (dataType) {
             case DATA_TYPES::DIG_IN:        return static_cast<size_t>(DATA_TYPES_MULTIPLIER::DIG_IN);
@@ -113,7 +134,11 @@ namespace PAYLOAD_ENCODER
         }
     }
 
-    // Function to create a mapping between data types reference and respective size in bytes;
+    /**
+     * @brief Function to check whether a data type is signed or not.
+     * @param dataType The data type.
+     * @return True if the data type is signed, false otherwise.
+     */
     constexpr uint32_t getDataTypeIsSigned(DATA_TYPES dataType) {
         switch (dataType) {
             case DATA_TYPES::DIG_IN:        return static_cast<size_t>(DATA_TYPES_IS_SIGNED::DIG_IN);
